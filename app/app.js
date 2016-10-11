@@ -1,5 +1,5 @@
 (function() {
     'use strict';
     angular
-        .module('cookModule', []);
+        .module('cookModule', ['toastr']);
 })();

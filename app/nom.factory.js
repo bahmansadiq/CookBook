@@ -19,7 +19,7 @@
         		url: 'http://www.recipepuppy.com/api/',
         		params: {
         			i: items,
-        			q: food,
+        			q: food
         		}
                 
         	}).then(function(result) {
