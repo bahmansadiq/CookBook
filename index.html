@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="cookModule">
+<head>
+  <meta charset="UTF-8">
+  <title>Cook Book</title>
+<!-- bower:css -->
+<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+<link rel="stylesheet" href="bower_components/angular-toastr/dist/angular-toastr.css" />
+<!-- endbower -->
+
+<!-- inject:css -->
+<link rel="stylesheet" href="/app/styles/styles.css">
+<!-- endinject -->
+</head>
+
+<body class="ng-cloak">
+<div class='container' ng-controller="cookController as vm">
+	<div class="well row">
+		<div class="col-sm-4">
+			<img class="fork" src="http://philly.happeningmag.com/wp-content/uploads/2011/12/Cutlery-Set-Knife-Spoon-Fork-.jpg" alt="" id='top-image'>
+		</div>
+		<div class="col-sm-4">
+			<h1 class="text-center">Cook Book</h1>
+		</div>
+		<div class="col-sm-4 text-right">
+			<img src="http://freedesignfile.com/upload/2014/05/Vector-funny-chef-design-graphic-set-04.jpg" alt="" id='right-image'>
+		</div>
+	</div>
+	<!--Input area-->
+	<div class="col-sm-12">
+		<div class='form-group'>
+			<label for="">What would you like to make?</label>
+			<div class="input-group">
+				<input type="text" class="form-control" ng-model="vm.entreeSearch">
+				<span class="input-group-btn">
+					<button class="btn btn-primary" 
+					ng-click="vm.goRecipe('', vm.entreeSearch)">Search</button>
+				</span>   
+			</div>
+		</div>
+	</div>
+	<div class="col-sm-12">
+		<legend></legend>
+	</div>
+	<div class='form-group'>
+		<div class="col-sm-6">
+			<label for="Ingridents" >Please enter Ingridents</label>
+			<div class="input-group">
+				<input type="text" id='Ingridents' class="form-control" ng-model="vm.ingInput">
+				<span class="input-group-btn" > 
+					<button type="button" class="btn btn-primary" ng-click="vm.addIng()">Submit</button>
+				</span>
+			</div>
+		</div>
+	</div>
+	<div class="col-sm-6 form-group text-right">
+			<label for="" class="text-right">Don't feel like typing? Click here!</label>
+		<div class="btn-group" role="group">
+		    <button class="btn btn-success" ng-click="vm.ingList.push('potato')">Potato</button>
+		    <button class="btn btn-success" ng-click="vm.ingList.push('cheese')">Cheese</button>
+		    <button class="btn btn-success" ng-click="vm.ingList.push('onion')">Onion</button>
+		    <button class="btn btn-success" ng-click="vm.ingList.push('salt')">Salt</button>
+		    <button class="btn btn-success" ng-click="vm.ingList.push('oil')">Oil</button>
+		    <button class="btn btn-success" ng-click="vm.ingList.push('eggs')">Eggs</button>
+		    <button class="btn btn-success" ng-click="vm.ingList.push('milk')">Milk</button>
+		    <button class="btn btn-success" ng-click="vm.ingList.push('beef')">Beef</button>
+		    <button class="btn btn-success" ng-click="vm.ingList.push('garlic')">Garlic</button>
+		</div>
+
+	</div>
+	<div class="col-sm-4 col-sm-offset-4">
+		
+		<table class="table table-success text-center" >
+			
+			<tr ng-hide="vm.ingList.length === 0" class="text-center">
+				<th>Index of Items</th>
+				<th>Ingredient</th>
+				<th class="text-right">Remove</th>
+			</tr>
+			<tr ng-repeat="data in vm.ingList track by $index">
+				<td>{{vm.ingList.indexOf(data) + 1}}</td>
+				<td>{{data}}</td>
+				<td class="text-right"><button ng-click="vm.rmIng(data)" class="btn btn-danger" >Delete Item</button></td>
+			</tr>
+		</table>
+	</div>
+	<!--Outputs-->
+	<div class="col-sm-12">
+		<button class="btn btn-primary btn-block" ng-click="vm.goRecipe(vm.ingList.toString(), '')">Search</button>
+	</div>
+
+	<div class="col-sm-12">
+		<table class="table">
+			<tr ng-hide="vm.all.length === 0">
+				<th>Recipe Name</th>
+				<th>Ingredients</th>
+				<th>Click here to see the recipe</th>
+			</tr>
+			
+			<tr ng-repeat='details in vm.all'>
+				<td>{{details.title}}</td>
+				<td>{{details.ingredients}}</td>
+				<td ><a href="{{details.href}}">
+				<img class="img-rounded" 
+				ng-src="{{details.thumbnail}}" :
+				alt="Visit the link">
+				</a></td>
+			</tr>
+		</table>
+	</div>
+</div>
+<!-- bower:js -->
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<script src="bower_components/angular-toastr/dist/angular-toastr.tpls.js"></script>
+<!-- endbower -->
+<!-- inject:js -->
+<script src="/app/app.js"></script>
+<script src="/app/nom.controller.js"></script>
+<script src="/app/nom.factory.js"></script>
+<!-- endinject -->
+</body>
+</html>
