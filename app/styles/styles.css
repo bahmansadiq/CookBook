@@ -28,3 +28,9 @@ table {
 	height: 50%;
 	width: 50%;
 }
+@media screen and (max-width: 770px){
+    .fork , #right-image{
+    	display: none;
+    }
+
+}
